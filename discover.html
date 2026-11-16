@@ -78,7 +78,6 @@
             button.addEventListener('click', () => {
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
-
                 const selectedCategory = button.getAttribute('data-filter');
 
                 clubCards.forEach(card => {
