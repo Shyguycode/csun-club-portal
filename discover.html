@@ -28,7 +28,6 @@
             <p>Browse through over 300+ student organizations at CSUN[cite: 7].</p>
         </div>
 
-        <!-- Filter Sorting Chips -->
         <div class="filter-chips" id="filterChips">
             <button class="chip active" data-filter="all">All</button>
             <button class="chip" data-filter="academic">Academic</button>
@@ -37,7 +36,6 @@
             <button class="chip" data-filter="community">Community</button>
         </div>
 
-        <!-- Clubs Grid with Category Data Attributes -->
         <div class="clubs-grid" id="clubsGrid">
             <div class="club-card" data-category="academic">
                 <span class="card-tag">Academic</span>
@@ -72,14 +70,12 @@
         </div>
     </main>
 
-    <!-- Sorting & Filtering Script -->
     <script>
         const filterButtons = document.querySelectorAll('.chip');
         const clubCards = document.querySelectorAll('.clubs-grid .club-card');
 
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // Update active chip styling
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
 
