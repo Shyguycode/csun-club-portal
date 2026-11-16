@@ -27,61 +27,29 @@
             <div class="hero-content">
                 <h1>Find your community</h1>
                 <p class="hero-subtitle">Join a club or start one at CSUN.</p>
-                
                 <div class="search-bar-wrapper">
                     <input type="text" id="clubSearch" placeholder="Search clubs..." autocomplete="off">
-                    <div class="search-icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
-                    </div>
                 </div>
             </div>
-
             <div class="cta-wrapper">
                 <a href="login.html" class="register-club-btn">Register new club</a>
             </div>
         </section>
 
-        <section class="clubs-grid" id="clubsGrid">
-            <div class="club-card" data-club="Robotics Club">
+        <section class="clubs-grid">
+            <div class="club-card">
                 <span class="card-tag">Academic</span>
                 <h2>Robotics Club</h2>
                 <p class="card-desc">Build nights and competitions.</p>
                 <a href="robotics.html" class="view-club-link">View club</a>
             </div>
-            <div class="club-card" data-club="Cyber Defense Club">
+            <div class="club-card">
                 <span class="card-tag">Academic</span>
                 <h2>Cyber Defense Club</h2>
                 <p class="card-desc">Capture-the-flag teams and security workshops.</p>
                 <a href="cyber.html" class="view-club-link">View club</a>
             </div>
-            <div class="club-card" data-club="Salsa Dance Society">
-                <span class="card-tag">Recreation</span>
-                <h2>Salsa Dance Society</h2>
-                <p class="card-desc">Weekly socials, beginner lessons, and showcases.</p>
-                <a href="salsa.html" class="view-club-link">View club</a>
-            </div>
-            <div class="club-card" data-club="Habitat Service Corps">
-                <span class="card-tag">Community</span>
-                <h2>Habitat Service Corps</h2>
-                <p class="card-desc">Volunteering and community build days across LA.</p>
-                <a href="habitat.html" class="view-club-link">View club</a>
-            </div>
         </section>
     </main>
-
-    <script>
-        const searchInput = document.getElementById('clubSearch');
-        const clubCards = document.querySelectorAll('.club-card');
-        searchInput.addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase().trim();
-            clubCards.forEach(card => {
-                const name = card.getAttribute('data-club').toLowerCase();
-                card.style.display = (name.includes(term) || term === '') ? 'flex' : 'none';
-            });
-        });
-    </script>
 </body>
 </html>
