@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Header Navigation Bar -->
     <header class="navbar">
         <a href="index.html" class="nav-brand">
             <span class="csun-badge">CSUN</span>
@@ -22,26 +23,84 @@
         </nav>
     </header>
 
+    <!-- Main Container -->
     <main class="main-container">
         <div class="page-header">
             <h1>Discover Clubs</h1>
             <p>Browse through over 300+ student organizations at CSUN[cite: 7].</p>
         </div>
 
-        <div class="clubs-grid">
-            <div class="club-card">
+        <!-- Filter Sorting Chips -->
+        <div class="filter-chips" id="filterChips">
+            <button class="chip active" data-filter="all">All</button>
+            <button class="chip" data-filter="academic">Academic</button>
+            <button class="chip" data-filter="cultural">Cultural</button>
+            <button class="chip" data-filter="recreation">Recreation</button>
+            <button class="chip" data-filter="community">Community</button>
+        </div>
+
+        <!-- Full Clubs Grid -->
+        <div class="clubs-grid" id="clubsGrid">
+            <div class="club-card" data-category="academic">
                 <span class="card-tag">Academic</span>
                 <h2>Robotics Club</h2>
                 <p class="card-desc">Build nights and competitions.</p>
                 <a href="robotics.html" class="view-club-link">View club</a>
             </div>
-            <div class="club-card">
+            
+            <div class="club-card" data-category="academic">
+                <span class="card-tag">Academic</span>
+                <h2>Cyber Defense Club</h2>
+                <p class="card-desc">Capture-the-flag teams and security workshops.</p>
+                <a href="cyber.html" class="view-club-link">View club</a>
+            </div>
+
+            <div class="club-card" data-category="cultural">
                 <span class="card-tag">Cultural</span>
                 <h2>Filipino American Student Association</h2>
                 <p class="card-desc">Cultural awareness, dance, and community events.</p>
                 <a href="fasa.html" class="view-club-link">View club</a>
             </div>
+
+            <div class="club-card" data-category="recreation">
+                <span class="card-tag">Recreation</span>
+                <h2>Salsa Dance Society</h2>
+                <p class="card-desc">Weekly socials, beginner lessons, and showcases.</p>
+                <a href="salsa.html" class="view-club-link">View club</a>
+            </div>
+
+            <div class="club-card" data-category="community">
+                <span class="card-tag">Community</span>
+                <h2>Habitat Service Corps</h2>
+                <p class="card-desc">Volunteering and community build days across LA.</p>
+                <a href="habitat.html" class="view-club-link">View club</a>
+            </div>
         </div>
     </main>
+
+    <!-- Category Sorting JavaScript -->
+    <script>
+        const filterButtons = document.querySelectorAll('.chip');
+        const clubCards = document.querySelectorAll('.clubs-grid .club-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active state on buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const selectedCategory = button.getAttribute('data-filter');
+
+                clubCards.forEach(card => {
+                    const cardCategory = card.getAttribute('data-category');
+                    if (selectedCategory === 'all' || cardCategory === selectedCategory) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
