@@ -412,4 +412,85 @@ body {
 .secondary-btn:hover {
     background: #333;
     border-color: #555;
+}/* Hero Section Fix */
+.hero-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3.5rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.hero-content {
+    flex: 1;
+    min-width: 320px;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+    font-size: 1.4rem;
+    color: #888;
+    margin-bottom: 1.5rem;
+}
+
+.search-bar-wrapper {
+    position: relative;
+    max-width: 520px;
+    width: 100%;
+}
+
+.search-bar-wrapper input {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    padding-right: 3rem;
+    background: #161618;
+    border: 1.5px solid #2a2a2e;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+}
+
+.search-bar-wrapper input:focus {
+    border-color: #e31b23;
+}
+
+.search-icon {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+    pointer-events: none;
+}
+
+.cta-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.register-club-btn {
+    background-color: #e31b23;
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s;
+    white-space: nowrap;
+}
+
+.register-club-btn:hover {
+    background-color: #c5141c;
 }
