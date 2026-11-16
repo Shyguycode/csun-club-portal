@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layer 8 Club - CSUN Club Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <a href="index.html" class="nav-brand">
+            <span class="csun-badge">CSUN</span>
+            <span class="portal-title">Club Portal</span>
+        </a>
+        <nav class="nav-links">
+            <a href="discover.html">Discover clubs</a>
+            <a href="my-clubs.html">My clubs</a>
+            <a href="events.html">Events</a>
+            <a href="help.html">Help</a>
+            <a href="login.html" class="login-nav-btn active-user">ME</a>
+        </nav>
+    </header>
+
+    <main class="main-container">
+        <div class="back-link-wrapper">
+            <a href="discover.html" class="back-link">← All clubs</a>
+        </div>
+
+        <div class="club-detail-layout">
+            <!-- Left Main Club Panel -->
+            <div class="club-main-panel">
+                <span class="card-tag">Academic</span>
+                <h1 class="club-title">Layer 8 Club</h1>
+                <p class="club-tagline">Weekly meetings feature interactive labs, industry lectures, and presentations covering topics like RF hacking, IoT security, Python automation, Wireshark, digital forensics, and web hacking.</p>
+                
+                <p class="club-long-desc">
+                    To cultivate a community of students passionate about information security, ethics, and hands-on technical skills.
+                </p>
+
+                <div class="club-info-stats">
+                    <div class="stat-box">
+                        <span class="stat-title">Meets</span>
+                        <span class="stat-value">Wednesdays, 6 PM</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-title">Members</span>
+                        <span class="stat-value">84 members</span>
+                    </div>
+                </div>
+
+                <div class="club-action-row">
+                    <button class="register-club-btn small-btn" onclick="alert('Successfully joined Robotics Club!')">Join club</button>
+                    <a href="discover.html" class="secondary-btn">Back to directory</a>
+                </div>
+            </div>
+
+            <!-- Right Sidebar: Related Clubs -->
+            <div class="club-sidebar">
+                <h3>More clubs like this</h3>
+                <div class="related-club-item">
+                    <a href="cyber.html">Layer 8 Club</a>
+                    <p>Capture-the-flag teams and security workshops.</p>
+                </div>
+                <div class="related-club-item">
+                    <a href="fasa.html">Filipino American Student Association</a>
+                    <p>Cultural awareness, dance, and community events.</p>
+                </div>
+                <div class="related-club-item">
+                    <a href="habitat.html">Habitat Service Corps</a>
+                    <p>Volunteering and community build days across LA.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

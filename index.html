@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSUN Club Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header Navigation Bar -->
+    <header class="navbar">
+        <a href="#" class="nav-brand" onclick="switchView('home')">
+            <span class="csun-badge">CSUN</span>
+            <span class="portal-title">Club Portal</span>
+        </a>
+        <nav class="nav-links">
+            <a href="#" onclick="switchView('discover')" id="nav-discover">Discover clubs</a>
+            <a href="#" onclick="switchView('my-clubs')" id="nav-my-clubs">My clubs</a>
+            <a href="#" onclick="switchView('events')" id="nav-events">Events</a>
+            <a href="#" onclick="switchView('help')" id="nav-help">Help</a>
+            <a href="#" onclick="switchView('login')" class="login-nav-btn" id="nav-login">Log in</a>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main-container">
+
+        <!-- 1. HOME / LANDING VIEW -->
+        <section id="view-home" class="portal-view active">
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1>Find your community</h1>
+                    <p class="hero-subtitle">Join a club or start one at CSUN.</p>
+                    
+                    <div class="search-bar-wrapper">
+                        <input type="text" id="clubSearch" placeholder="Search clubs..." autocomplete="off">
+                        <div class="search-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-wrapper">
+                    <button onclick="switchView('login')" class="register-club-btn">Register new club</button>
+                </div>
+            </div>
+
+            <div class="clubs-grid" id="homeClubsGrid">
+                <!-- Populated dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- 2. DISCOVER CLUBS VIEW (WITH SORTING CHIPS) -->
+        <section id="view-discover" class="portal-view">
+            <div class="page-header">
+                <h1>Discover Clubs</h1>
+                <p>Browse through over 300+ student organizations at CSUN.</p>
+            </div>
+            
+            <!-- Sorting / Category Chips -->
+            <div class="filter-chips" id="categoryChips">
+                <button class="chip active" data-category="All">All</button>
+                <button class="chip" data-category="Academic">Academic</button>
+                <button class="chip" data-category="Cultural">Cultural</button>
+                <button class="chip" data-category="Recreation">Recreation</button>
+                <button class="chip" data-category="Community">Community</button>
+            </div>
+
+            <div class="clubs-grid" id="discoverClubsGrid">
+                <!-- Populated dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- 3. CLUB DETAIL VIEW -->
+        <section id="view-detail" class="portal-view">
+            <div style="margin-bottom: 1.5rem;">
+                <a href="#" onclick="switchView('discover')" class="back-link">← All clubs</a>
+            </div>
+            <div class="detail-layout">
+                <div class="detail-main-card">
+                    <span class="card-tag" id="detailCategory">Academic</span>
+                    <h1 id="detailTitle" style="font-size: 2.8rem; font-weight: 800; margin: 0.5rem 0 1rem 0;">Robotics Club</h1>
+                    <p class="card-desc" id="detailDesc" style="font-size: 1.1rem; margin-bottom: 2rem;">Build nights and competitions.</p>
+                    <p id="detailFullDesc" style="color: #bbb; line-height: 1.6; margin-bottom: 2rem;">Design, build and program robots for campus and regional competitions. No experience needed: new members pair with a mentor on their first build night[cite: 6].</p>
+                    
+                    <div class="detail-info-boxes">
+                        <div class="info-box">
+                            <strong>Meets</strong>
+                            <p id="detailMeets" style="color: #aaa; margin-top: 0.3rem;">Wednesdays, 6 PM[cite: 6]</p>
+                        </div>
+                        <div class="info-box">
+                            <strong>Members</strong>
+                            <p id="detailMembers" style="color: #aaa; margin-top: 0.3rem;">84 members[cite: 6]</p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                        <button class="register-club-btn small-btn" onclick="alert('Successfully joined club!')">Join club</button>
+                        <button class="secondary-btn" onclick="switchView('discover')">Back to directory</button>
+                    </div>
+                </div>
+
+                <div class="detail-sidebar-card">
+                    <h3>More clubs like this</h3>
+                    <div id="relatedClubsList" class="related-list">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. MY CLUBS VIEW -->
+        <section id="view-my-clubs" class="portal-view">
+            <div class="page-header">
+                <h1>My Clubs & Memberships</h1>
+                <p>Clubs you have joined or registered as an officer.</p>
+            </div>
+            <div class="content-card-box">
+                <h3>Active Memberships (2)</h3>
+                <ul class="styled-list">
+                    <li>
+                        <div>
+                            <strong>Robotics Club</strong>
+                            <span class="badge status-active">Member</span>
+                        </div>
+                        <button onclick="openClubDetail('robotics')" class="secondary-btn">Open Portal</button>
+                    </li>
+                    <li>
+                        <div>
+                            <strong>Cyber Defense Club</strong>
+                            <span class="badge status-active">Member</span>
+                        </div>
+                        <button onclick="openClubDetail('cyber')" class="secondary-btn">Open Portal</button>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 5. EVENTS VIEW -->
+        <section id="view-events" class="portal-view">
+            <div class="page-header">
+                <h1>Events</h1>
+                <p>Meetings, workshops and socials from CSUN clubs[cite: 4].</p>
+            </div>
+            <div class="events-grid">
+                <div class="event-card-box">
+                    <span class="event-club-label">Robotics Club[cite: 4]</span>
+                    <h2>Build Night: Rover Chassis[cite: 4]</h2>
+                    <p class="event-time">Wed, Nov 18 · 6:00 PM[cite: 4]</p>
+                    <p class="event-loc">📍 Jacaranda Hall[cite: 4]</p>
+                    <div class="event-actions">
+                        <button class="register-club-btn small-btn" onclick="alert('RSVP Confirmed!')">RSVP</button>
+                        <button onclick="openClubDetail('robotics')" class="view-club-link" style="background:none; border:none; color:white; cursor:pointer;">View club[cite: 4]</button>
+                    </div>
+                </div>
+                <div class="event-card-box">
+                    <span class="event-club-label">Cyber Defense Club[cite: 4]</span>
+                    <h2>Capture the Flag Practice[cite: 4]</h2>
+                    <p class="event-time">Thu, Nov 19 · 5:30 PM[cite: 4]</p>
+                    <p class="event-loc">📍 Oviatt Library[cite: 4]</p>
+                    <div class="event-actions">
+                        <button class="register-club-btn small-btn" onclick="alert('RSVP Confirmed!')">RSVP</button>
+                        <button onclick="openClubDetail('cyber')" class="view-club-link" style="background:none; border:none; color:white; cursor:pointer;">View club[cite: 4]</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. HELP VIEW -->
+        <section id="view-help" class="portal-view">
+            <div class="page-header">
+                <h1>Help</h1>
+                <p>Answers about registering and joining clubs[cite: 3].</p>
+            </div>
+            <div class="help-layout">
+                <div class="faq-list">
+                    <details class="faq-item"><summary>▶ Who can register a club?</summary><p>Any currently enrolled CSUN student can start a recognized student organization.</p></details>
+                    <details class="faq-item"><summary>▶ What do I need before I start?</summary><p>At least 3 officers and a faculty advisor.</p></details>
+                    <details class="faq-item"><summary>▶ What happens after I submit?</summary><p>The MIC staff reviews your constitution and paperwork within 3-5 business days.</p></details>
+                </div>
+                <div class="contact-box">
+                    <h3>Still need help?</h3>
+                    <form onsubmit="event.preventDefault(); alert('Message sent to MIC support!');">
+                        <div class="form-group"><label>Your name</label><input type="text" required></div>
+                        <div class="form-group"><label>Email</label><input type="email" placeholder="name@my.csun.edu" required></div>
+                        <div class="form-group"><label>How can we help?</label><textarea rows="4" required></textarea></div>
+                        <button type="submit" class="register-club-btn full-width small-btn">Send message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. LOGIN VIEW -->
+        <section id="view-login" class="portal-view">
+            <div class="login-wrapper">
+                <div class="login-card">
+                    <div class="login-header">
+                        <h2>Log in</h2>
+                        <p>Use your CSUN account to join clubs, RSVP to events and follow your registrations[cite: 2].</p>
+                    </div>
+                    <button class="sso-btn" onclick="switchView('my-clubs')">Continue with CSUN single sign-on</button>
+                    <div class="divider">or</div>
+                    <form onsubmit="event.preventDefault(); switchView('my-clubs');">
+                        <div class="form-group"><label>CSUN email</label><input type="email" placeholder="name@my.csun.edu" required></div>
+                        <div class="form-group"><label>Password</label><input type="password" placeholder="••••••••" required></div>
+                        <button type="submit" class="register-club-btn full-width">Log in</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Application Controller Script -->
+    <script>
+        // Club Database
+        const clubsData = {
+            robotics: {
+                id: 'robotics',
+                title: 'Robotics Club',
+                category: 'Academic',
+                desc: 'Build nights and competitions.',
+                fullDesc: 'Design, build and program robots for campus and regional competitions. No experience needed: new members pair with a mentor on their first build night[cite: 6].',
+                meets: 'Wednesdays, 6 PM[cite: 6]',
+                members: '84 members[cite: 6]',
+                related: [
+                    { id: 'cyber', name: 'Cyber Defense Club', desc: 'Capture-the-flag teams and security workshops[cite: 6].' },
+                    { id: 'premed', name: 'Pre-Med Association', desc: 'Mentoring and study groups[cite: 6].' },
+                    { id: 'womenintech', name: 'Women in Tech', desc: 'Mentoring, talks and career nights[cite: 6].' }
+                ]
+            },
+            cyber: {
+                id: 'cyber',
+                title: 'Cyber Defense Club',
+                category: 'Academic',
+                desc: 'Capture-the-flag teams and security workshops.',
+                fullDesc: 'Participate in collegiate cyber defense competitions, ethical hacking workshops, and security seminars.',
+                meets: 'Thursdays, 5:30 PM',
+                members: '62 members',
+                related: [
+                    { id: 'robotics', name: 'Robotics Club', desc: 'Build nights and competitions[cite: 6].' },
+                    { id: 'womenintech', name: 'Women in Tech', desc: 'Mentoring, talks and career nights[cite: 6].' }
+                ]
+            },
+            salsa: {
+                id: 'salsa',
+                title: 'Salsa Dance Society',
+                category: 'Recreation',
+                desc: 'Weekly socials, beginner lessons, and showcases.',
+                fullDesc: 'Learn salsa, bachata, and merengue choreography. Weekly socials open to all skill levels.',
+                meets: 'Fridays, 7 PM',
+                members: '110 members',
+                related: [
+                    { id: 'fasa', name: 'Filipino American Student Association', desc: 'Cultural awareness and dance.' }
+                ]
+            },
+            fasa: {
+                id: 'fasa',
+                title: 'Filipino American Student Association',
+                category: 'Cultural',
+                desc: 'Cultural awareness, dance, and community events.',
+                fullDesc: 'Promoting Filipino culture, traditional dance (Pilipino Cultural Night), and community networking.',
+                meets: 'Tuesdays, 6 PM',
+                members: '145 members',
+                related: [
+                    { id: 'salsa', name: 'Salsa Dance Society', desc: 'Weekly socials and beginner lessons.' }
+                ]
+            },
+            habitat: {
+                id: 'habitat',
+                title: 'Habitat Service Corps',
+                category: 'Community',
+                desc: 'Volunteering and community build days across LA.',
+                fullDesc: 'Partnering with local organizations to support community build days and neighborhood cleanups.',
+                meets: 'Saturdays, 9 AM',
+                members: '50 members',
+                related: [
+                    { id: 'fasa', name: 'Filipino American Student Association', desc: 'Cultural awareness and community events.' }
+                ]
+            }
+        };
+
+        // Switch Views Function
+        function switchView(viewId) {
+            document.querySelectorAll('.portal-view').forEach(v => v.classList.remove('active'));
+            document.getElementById('view-' + viewId).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Render Clubs in Grids
+        function renderClubs(category = 'All', searchTerm = '') {
+            const homeGrid = document.getElementById('homeClubsGrid');
+            const discoverGrid = document.getElementById('discoverClubsGrid');
+            
+            let htmlHome = '';
+            let htmlDiscover = '';
+
+            Object.values(clubsData).forEach(club => {
+                const matchesCategory = (category === 'All' || club.category === category);
+                const matchesSearch = club.title.toLowerCase().includes(searchTerm.toLowerCase()) || club.desc.toLowerCase().includes(searchTerm.toLowerCase());
+
+                const cardHtml = `
+                    <div class="club-card">
+                        <span class="card-tag">${club.category}</span>
+                        <h2>${club.title}</h2>
+                        <p class="card-desc">${club.desc}</p>
+                        <a href="#" onclick="openClubDetail('${club.id}')" class="view-club-link">View club</a>
+                    </div>
+                `;
+
+                if (matchesSearch) {
+                    htmlHome += cardHtml;
+                }
+                if (matchesCategory && matchesSearch) {
+                    htmlDiscover += cardHtml;
+                }
+            });
+
+            homeGrid.innerHTML = htmlHome || '<p style="color:#777;">No clubs found matching your search.</p>';
+            discoverGrid.innerHTML = htmlDiscover || '<p style="color:#777;">No clubs found in this category.</p>';
+        }
+
+        // Open Club Detail Page Dynamically
+        function openClubDetail(clubId) {
+            const club = clubsData[clubId] || clubsData['robotics'];
+            
+            document.getElementById('detailCategory').innerText = club.category;
+            document.getElementById('detailTitle').innerText = club.title;
+            document.getElementById('detailDesc').innerText = club.desc;
+            document.getElementById('detailFullDesc').innerText = club.fullDesc;
+            document.getElementById('detailMeets').innerText = club.meets;
+            document.getElementById('detailMembers').innerText = club.members;
+
+            let relatedHtml = '';
+            club.related.forEach(rel => {
+                relatedHtml += `
+                    <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #222;">
+                        <a href="#" onclick="openClubDetail('${rel.id}')" style="color: #e31b23; font-weight: 700; text-decoration: none; display: block; margin-bottom: 0.2rem;">${rel.name}</a>
+                        <p style="color: #888; font-size: 0.85rem;">${rel.desc}</p>
+                    </div>
+                `;
+            });
+            document.getElementById('relatedClubsList').innerHTML = relatedHtml;
+
+            switchView('detail');
+        }
+
+        // Search Listener
+        document.getElementById('clubSearch').addEventListener('input', (e) => {
+            renderClubs('All', e.target.value.trim());
+        });
+
+        // Category Chip Filtering Listener
+        document.querySelectorAll('#categoryChips .chip').forEach(chip => {
+            chip.addEventListener('click', () => {
+                document.querySelectorAll('#categoryChips .chip').forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                renderClubs(chip.getAttribute('data-category'));
+            });
+        });
+
+        // Initial Load
+        renderClubs();
+    </script>
+</body>
+</html>
